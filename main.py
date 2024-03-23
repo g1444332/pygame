@@ -1,3 +1,4 @@
+import sys
 from pygame import *
 
 
@@ -78,16 +79,18 @@ player = Player("image/hero.png", 5, win_height - 80, 4)
 monster = Enemy("image/cyborg.png", win_width - 120, 280, 2)
 final = GameSprite("image/treasure.png", win_width - 120, win_height - 80, 0)
 
-w1 = Wall(154, 205, 50, 100, 20, 450, 10)
-w2 = Wall(154, 205, 50, 100, 480, 350,10)
+w1 = Wall(154, 205, 50, 100, 20, 590, 10)
+w2 = Wall(154, 205, 50, 100, 490, 400, 10)
 w3 = Wall(154, 205, 50, 100, 20, 10, 380)
+w4 = Wall(154, 205, 50, 200, 110, 10, 380)
+w5 = Wall(154, 205, 50, 200, 110, 100, 10)
+w6 = Wall(154, 205, 50, 390, 20, 10, 390)
+w7 = Wall(154, 205, 50, 300, 210, 100, 10)
+w8 = Wall(154, 205, 50, 200, 310, 100, 10)
+w9 = Wall(154, 205, 50, 300, 400, 100, 10)
+w10 = Wall(154, 205, 50, 490, 110, 10, 380)
+w11 = Wall(154, 205, 50, 680, 20, 10, 480)
 
-x1 = 100
-x2 = 0
-y1 = 100
-y2 = 0
-
-game = True
 finish = False
 
 font.init()
@@ -98,10 +101,10 @@ lose = font.render('YOU LOSE!', True, (180, 0, 0))
 money = mixer.Sound('sound/money.ogg')
 kick = mixer.Sound('sound/kick.ogg')
 
-while game:
+while True:
     for e in event.get():
         if e.type == QUIT:
-            game = False
+            sys.exit()
 
     if not finish:
         window.blit(background, (0, 0))
@@ -114,8 +117,27 @@ while game:
         w1.draw_wall()
         w2.draw_wall()
         w3.draw_wall()
+        w4.draw_wall()
+        w5.draw_wall()
+        w6.draw_wall()
+        w7.draw_wall()
+        w8.draw_wall()
+        w9.draw_wall()
+        w10.draw_wall()
+        w11.draw_wall()
 
-    if sprite.collide_rect(player, monster) or sprite.collide_rect(player, w1) or sprite.collide_rect(player, w2) or sprite.collide_rect(player, w3):
+    if (sprite.collide_rect(player, monster)
+            or sprite.collide_rect(player, w1)
+            or sprite.collide_rect(player, w2)
+            or sprite.collide_rect(player, w3)
+            or sprite.collide_rect(player, w4)
+            or sprite.collide_rect(player, w5)
+            or sprite.collide_rect(player, w6)
+            or sprite.collide_rect(player, w7)
+            or sprite.collide_rect(player, w8)
+            or sprite.collide_rect(player, w9)
+            or sprite.collide_rect(player, w10)
+            or sprite.collide_rect(player, w11)):
         finish = True
         window.blit(lose, (200, 200))
         kick.play()
